@@ -1,0 +1,35 @@
+---
+seed: 2024
+
+dataset:
+  validation_2023:
+    root_dir: ./data/validation/2023/2023/
+    csv_path: ./data/validation/2023/2023/GroundTruth/val_HIPS_HYBRIDS_2023_V2.3.csv
+    date_metadata_csv_path: ./data/validation/2023/2023//GroundTruth/DateofCollection.xlsx
+  test_2023:
+    root_dir: ./data/test/2023/
+    csv_path: ./data/test/2023/GroundTruth/test_HIPS_HYBRIDS_2023_V2.3.csv
+    date_metadata_csv_path: ./data/test/2023/GroundTruth/DateofCollection.xlsx
+
+model:
+  - cnn:
+      config_path: ./config/base_cnn.yaml
+      weights_path: ./assets/cnn/cnn_1.ckpt
+
+  - cnn:
+      config_path: ./config/base_cnn_2.yaml
+      weights_path: ./assets/cnn/cnn_2.ckpt
+
+  - cnn:
+      config_path: ./config/base_cnn_3.yaml
+      weights_path: ./assets/cnn/cnn_3.ckpt
+
+  - cnn:
+      config_path: ./config/base_cnn_4.yaml
+      weights_path: ./assets/cnn/cnn_4.ckpt
+
+  - cnn:
+      config_path: ./config/base_cnn_5.yaml
+      weights_path: ./assets/cnn/cnn_5.ckpt
+
+input_size: 24

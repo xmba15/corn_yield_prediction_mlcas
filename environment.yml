@@ -1,0 +1,9 @@
+name: corn_yield
+channels:
+  - defaults
+  - anaconda
+dependencies:
+  - python=3.8
+  - pip
+  - pip:
+      - -r requirements.txt

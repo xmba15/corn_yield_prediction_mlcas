@@ -1,0 +1,60 @@
+---
+seed: 2024
+
+num_workers: 4
+experiment_name: "cnn_lstm_1"
+
+dataset:
+  n_splits: 5
+  fold_th: 0
+  train_2022:
+    root_dir: ./data/train/2022/2022/DataPublication_final
+    csv_path: ./data/train/2022/2022/DataPublication_final/GroundTruth/HYBRID_HIPS_V3.5_ALLPLOTS.csv
+    date_metadata_csv_path: ./data/train/2022/2022/DataPublication_final/GroundTruth/DateofCollection.xlsx
+  train_2023:
+    root_dir: ./data/train/2023/2023/DataPublication_final
+    csv_path: ./data/train/2023/2023/DataPublication_final/GroundTruth/train_HIPS_HYBRIDS_2023_V2.3.csv
+    date_metadata_csv_path: ./data/train/2023/2023/DataPublication_final/GroundTruth/DateofCollection.xlsx
+  validation_2023:
+    root_dir: ./data/validation/2023/2023/
+    csv_path: ./data/validation/2023/2023//GroundTruth/val_HIPS_HYBRIDS_2023_V2.3.csv
+    date_metadata_csv_path: ./data/validation/2023/2023//GroundTruth/DateofCollection.xlsx
+
+model:
+  pl_class: src.integrated.CornYieldCNNLSTMPl
+  encoder_name: tf_efficientnetv2_b3
+  in_channels: 6
+  hidden_size: 64
+  output_size: 1
+  dropout_rate: 0.2
+  num_lstm_layer: 4
+  backbone_checkpoint_path: ./assets/tf_efficientnetv2_b3_64.pt
+
+trainer:
+  devices: [0]
+  accelerator: "cuda"
+  max_epochs: &max_epochs 50
+  gradient_clip_val: 5.0
+  accumulate_grad_batches: 1
+  log_every_n_steps: 10
+  resume_from_checkpoint:
+
+optimizer:
+  type: torch.optim.AdamW
+  lr: 0.001
+  weight_decay: 0.05
+
+scheduler:
+  type: torch.optim.lr_scheduler.CosineAnnealingLR
+  T_max: *max_epochs
+  eta_min: 0.0001
+
+train_parameters:
+  batch_size: &batch_size 32
+
+val_parameters:
+  batch_size: *batch_size
+
+
+output_root_dir: experiments
+input_size: 24

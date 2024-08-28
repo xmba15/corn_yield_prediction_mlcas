@@ -213,7 +213,7 @@ def main():
         gradient_clip_val=hparams["trainer"]["gradient_clip_val"],
         accumulate_grad_batches=hparams["trainer"]["accumulate_grad_batches"],
         deterministic=True,
-        num_sanity_val_steps=0,
+        num_sanity_val_steps=2,
         logger=TensorBoardLogger(
             save_dir=hparams["output_root_dir"],
             version=f"{hparams['experiment_name']}_"

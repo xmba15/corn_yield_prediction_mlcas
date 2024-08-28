@@ -5,7 +5,7 @@ num_workers: 4
 experiment_name: "cnn_2"
 
 dataset:
-  n_splits: 5
+  n_splits: 10
   fold_th: 1
   train_2022:
     root_dir: ./data/train/2022/2022/DataPublication_final

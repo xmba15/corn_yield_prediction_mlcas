@@ -46,4 +46,10 @@ def get_extractor_in_features(
         encoder_name,
         in_chans=in_chans,
     )
-    return model.get_classifier().in_features
+
+    try:
+        num_features = model.get_classifier().in_features
+    except Exception as e:
+        num_features = model.num_features
+
+    return num_features

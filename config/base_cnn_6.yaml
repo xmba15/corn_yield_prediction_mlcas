@@ -1,12 +1,12 @@
 ---
 seed: 2024
 
-num_workers: 4
-experiment_name: "cnn_4"
+num_workers: 3
+experiment_name: "cnn_6"
 
 dataset:
   n_splits: 10
-  fold_th: 3
+  fold_th: 5
   train_2022:
     root_dir: ./data/train/2022/2022/DataPublication_final
     csv_path: ./data/train/2022/2022/DataPublication_final/GroundTruth/HYBRID_HIPS_V3.5_ALLPLOTS.csv
@@ -22,7 +22,7 @@ dataset:
 
 model:
   pl_class: src.integrated.CornYieldCNNPl
-  encoder_name: efficientvit_l1
+  encoder_name: efficientvit_l2
   in_channels: 6
   hidden_size: 512
   output_size: 1
@@ -38,7 +38,7 @@ trainer:
 
 optimizer:
   type: torch.optim.AdamW
-  lr: 0.00015
+  lr: 0.0002
   weight_decay: 0.005
 
 scheduler:

@@ -223,7 +223,9 @@ class CornYieldCNN(nn.Module):
                 valid_norm_passing_days,
             )
 
-            output = output.mean(dim=0)
+            valid_norm_passing_days = torch.exp(valid_norm_passing_days)
+            output = output.squeeze(1) * valid_norm_passing_days / torch.sum(valid_norm_passing_days)
+            output = output.sum(dim=0)[..., None]
             batch_output.append(output)
 
         batch_output = torch.cat(

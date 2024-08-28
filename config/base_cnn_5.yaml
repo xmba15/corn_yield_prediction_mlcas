@@ -5,7 +5,7 @@ num_workers: 4
 experiment_name: "cnn_5"
 
 dataset:
-  n_splits: 5
+  n_splits: 10
   fold_th: 4
   train_2022:
     root_dir: ./data/train/2022/2022/DataPublication_final
@@ -22,7 +22,7 @@ dataset:
 
 model:
   pl_class: src.integrated.CornYieldCNNPl
-  encoder_name: efficientvit_l1
+  encoder_name: fastvit_ma36
   in_channels: 6
   hidden_size: 512
   output_size: 1
@@ -39,7 +39,7 @@ trainer:
 optimizer:
   type: torch.optim.AdamW
   lr: 0.0002
-  weight_decay: 0.05
+  weight_decay: 0.005
 
 scheduler:
   type: torch.optim.lr_scheduler.CosineAnnealingLR

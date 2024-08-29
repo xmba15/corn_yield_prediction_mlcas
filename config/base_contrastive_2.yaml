@@ -1,0 +1,49 @@
+---
+seed: 2024
+
+num_workers: 4
+experiment_name: "contrastive_learning"
+
+dataset:
+  train_2022:
+    root_dir: ./data/train/2022/2022/DataPublication_final
+    csv_path: ./data/train/2022/2022/DataPublication_final/GroundTruth/HYBRID_HIPS_V3.5_ALLPLOTS.csv
+    date_metadata_csv_path: ./data/train/2022/2022/DataPublication_final/GroundTruth/DateofCollection.xlsx
+  train_2023:
+    root_dir: ./data/train/2023/2023/DataPublication_final
+    csv_path: ./data/train/2023/2023/DataPublication_final/GroundTruth/train_HIPS_HYBRIDS_2023_V2.3.csv
+    date_metadata_csv_path: ./data/train/2023/2023/DataPublication_final/GroundTruth/DateofCollection.xlsx
+  validation_2023:
+    root_dir: ./data/validation/2023/2023/
+    csv_path: ./data/validation/2023/2023//GroundTruth/val_HIPS_HYBRIDS_2023_V2.3.csv
+    date_metadata_csv_path: ./data/validation/2023/2023//GroundTruth/DateofCollection.xlsx
+  test_2023:
+    root_dir: ./data/test/2023/
+    csv_path: ./data/test/2023/GroundTruth/test_HIPS_HYBRIDS_2023_V2.3.csv
+    date_metadata_csv_path: ./data/test/2023/GroundTruth/DateofCollection.xlsx
+
+model:
+  pl_class: src.integrated.SimSiamPl
+  encoder_name: tf_efficientnetv2_b3
+  in_channels: 6
+  hidden_size: 512
+
+optimizer:
+  type: torch.optim.SGD
+  lr: 0.05
+  weight_decay: 0.0005
+
+trainer:
+  devices: [0]
+  accelerator: "cuda"
+  max_epochs: 100
+  gradient_clip_val: 5.0
+  accumulate_grad_batches: 1
+  log_every_n_steps: 10
+  resume_from_checkpoint:
+
+train_parameters:
+  batch_size: 256
+
+output_root_dir: experiments
+input_size: 24

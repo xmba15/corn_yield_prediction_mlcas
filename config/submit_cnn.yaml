@@ -32,4 +32,24 @@ model:
       config_path: ./config/base_cnn_5.yaml
       weights_path: ./assets/cnn/cnn_5.ckpt
 
+  - cnn:
+      config_path: ./config/base_cnn_6.yaml
+      weights_path: ./assets/cnn/cnn_6.ckpt
+
+  - cnn:
+      config_path: ./config/base_cnn_7.yaml
+      weights_path: ./assets/cnn/cnn_7.ckpt
+
+  - cnn:
+      config_path: ./config/base_cnn_8.yaml
+      weights_path: ./assets/cnn/cnn_8.ckpt
+
+  - cnn:
+      config_path: ./config/base_cnn_9.yaml
+      weights_path: ./assets/cnn/cnn_9.ckpt
+
+  - cnn:
+      config_path: ./config/base_cnn_10.yaml
+      weights_path: ./assets/cnn/cnn_10.ckpt
+
 input_size: 24
